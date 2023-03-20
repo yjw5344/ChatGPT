@@ -7,11 +7,9 @@ tokenizer = PreTrainedTokenizerFast.from_pretrained(
     bos_token='</s>', eos_token='</s>', unk_token='<unk>',
     pad_token='<pad>', mask_token='<mask>')
 
-
-
 model = GPT2LMHeadModel.from_pretrained('skt/kogpt2-base-v2')
 
-text = '근육이 커지기 위해서는 '
+text = '아반떼를 사려면 '
 input_ids = tokenizer.encode(text)
 gen_ids = model.generate(torch.tensor([input_ids]),
                          max_length=128,
@@ -22,3 +20,6 @@ gen_ids = model.generate(torch.tensor([input_ids]),
                          use_cache=True)
 generated = tokenizer.decode(gen_ids[0,:].tolist())
 print(generated)
+
+
+
